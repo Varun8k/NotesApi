@@ -7,9 +7,14 @@ dotenv.config()
 
 const userRouter = require("./route/userRoute");
 const noteRouter = require("./route/noteRoute");
-
+const corsConfig={
+  origin:"*",
+  credential: true,
+  methods : ["GET","POST","PUT","DELETE"],
+}
 app.use(express.json())
-app.use(cors())
+app.options("",cors(corsConfig));
+app.use(cors(corsConfig))
 app.use("/users",userRouter)
 app.use("/note",noteRouter)
 
